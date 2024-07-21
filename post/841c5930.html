@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>二分算法思路 | luluniu的妙妙屋</title><meta name="author" content="luluniu"><meta name="copyright" content="luluniu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二分算法一、第一种二分(easy)例题一：力扣704. 二分查找 - 力扣（LeetCode）方法：1.暴力循环遍历，时间复杂度为O(n)，代码太简单就省略了也不建议用这种方法 2.二分算法(重点)时间复杂度O(logn)解法思路:如果利用暴力那么这道题有一个很重要的条件没有用,那就是有序,如果选取某个点为分界点,那么就可以把该区域划分为两个部分,即二段性这就是可以利用二分法解题的原理!  a.一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分算法思路">
+<meta property="og:url" content="http://example.com/post/841c5930.html">
+<meta property="og:site_name" content="luluniu的妙妙屋">
+<meta property="og:description" content="二分算法一、第一种二分(easy)例题一：力扣704. 二分查找 - 力扣（LeetCode）方法：1.暴力循环遍历，时间复杂度为O(n)，代码太简单就省略了也不建议用这种方法 2.二分算法(重点)时间复杂度O(logn)解法思路:如果利用暴力那么这道题有一个很重要的条件没有用,那就是有序,如果选取某个点为分界点,那么就可以把该区域划分为两个部分,即二段性这就是可以利用二分法解题的原理!  a.一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/touxiangfort.jpg">
+<meta property="article:published_time" content="2024-07-21T17:45:39.000Z">
+<meta property="article:modified_time" content="2024-07-21T17:58:02.866Z">
+<meta property="article:author" content="luluniu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/touxiangfort.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/post/841c5930.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二分算法思路',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-22 01:58:02'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/touxiangfort.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/202407211950.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="luluniu的妙妙屋"><span class="site-name">luluniu的妙妙屋</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">二分算法思路</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-21T17:45:39.000Z" title="发表于 2024-07-22 01:45:39">2024-07-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-21T17:58:02.866Z" title="更新于 2024-07-22 01:58:02">2024-07-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="二分算法思路"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="二分算法"><a href="#二分算法" class="headerlink" title="二分算法"></a>二分算法</h1><h2 id="一、第一种二分-easy"><a href="#一、第一种二分-easy" class="headerlink" title="一、第一种二分(easy)"></a>一、第一种二分(easy)</h2><h3 id="例题一：力扣704-二分查找-力扣（LeetCode）"><a href="#例题一：力扣704-二分查找-力扣（LeetCode）" class="headerlink" title="例题一：力扣704. 二分查找 - 力扣（LeetCode）"></a>例题一：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/description/">力扣704. 二分查找 - 力扣（LeetCode）</a></h3><h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><h4 id="1-暴力"><a href="#1-暴力" class="headerlink" title="1.暴力"></a>1.暴力</h4><p>循环遍历，时间复杂度为O(n)，代码太简单就省略了也不建议用这种方法</p>
+<h4 id="2-二分算法-重点-时间复杂度O-logn"><a href="#2-二分算法-重点-时间复杂度O-logn" class="headerlink" title="2.二分算法(重点)时间复杂度O(logn)"></a>2.二分算法(<strong>重点</strong>)时间复杂度<strong>O(logn)</strong></h4><h5 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路:"></a>解法思路:</h5><p>如果利用暴力那么这道题有一个很重要的条件没有用,那就是<strong>有序</strong>,如果选取某个点为分界点,那么就可以把该区域划分为两个部分,即<strong>二段性</strong>这就是可以利用二分法解题的原理!</p>
+<ul>
+<li><p>a.一定包含target的区间</p>
+</li>
+<li><p>b.一定没有target的区间</p>
+</li>
+</ul>
+<p>这样可以快速舍弃一段区间的数值,提高效率,所以一开始就要选取某个点为分界点,而这个点往往是中点(当然三分点…也是可以的,但是根据数学知识二分是效果最好的),这也就是二分名字的来源</p>
+<h5 id="细节-重难点"><a href="#细节-重难点" class="headerlink" title="细节:(重难点)"></a>细节:(<strong>重难点</strong>)</h5><ul>
+<li>最重要的就是分类讨论好二分</li>
+<li>什么是区间不变量?比如:区间取左闭右闭的话,那么每次区间二分范围都是新区间的左闭右闭 ,后面做判断时要一直基于这个左闭右闭的区间.根据此判断while循环的控制条件要不要带&#x3D;号,还有移动左右指针时候要不要跨过mid.</li>
+<li>每次取中点时要防止溢出,所以一般不用mid&#x3D;(l+r)&#x2F;2,而是利用左指针移动了区间的一步算mid,即mid&#x3D;l+(r-l)&#x2F;2</li>
+</ul>
+<h5 id="代码版本一-左闭右闭"><a href="#代码版本一-左闭右闭" class="headerlink" title="代码版本一(左闭右闭)"></a>代码版本一(左闭右闭)</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;	<span class="comment">//比如剩一个元素[1,1]由于闭区间可以取=号</span></span><br><span class="line">            <span class="type">int</span> mid = (r - l) / <span class="number">2</span> + l;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target)</span><br><span class="line">                l = mid + <span class="number">1</span>;	<span class="comment">//mid一定不满足条件,所以l移动直接跨过</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)</span><br><span class="line">                r = mid - <span class="number">1</span>;	<span class="comment">//mid一定不满足条件,所以r移动直接跨过</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="代码版本二-左闭右开"><a href="#代码版本二-左闭右开" class="headerlink" title="代码版本二(左闭右开)"></a>代码版本二(左闭右开)</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> mid = (r - l) / <span class="number">2</span> + l;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target)</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)</span><br><span class="line">                r = mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h5><p>取中点操作一般有两种 <strong>mid &#x3D; l + (r - l ) &#x2F; 2</strong> 和 <strong>mid &#x3D; l + (r - l + 1) &#x2F; 2</strong> ，区别在于偶数个时，前者取中间偏左的那个数值，而后者取中间偏右的数值，对于本题两者都可以，所以不再此强调。</p>
+<h2 id="二、寻找左侧边界的二分查找和寻找右侧边界的二分查找"><a href="#二、寻找左侧边界的二分查找和寻找右侧边界的二分查找" class="headerlink" title="二、寻找左侧边界的二分查找和寻找右侧边界的二分查找"></a>二、寻找左侧边界的二分查找和寻找右侧边界的二分查找</h2><h3 id="例题二力扣34-在排序数组中查找元素的第一个和最后一个位置"><a href="#例题二力扣34-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="例题二力扣34. 在排序数组中查找元素的第一个和最后一个位置"></a>例题二<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/">力扣34. 在排序数组中查找元素的第一个和最后一个位置</a></h3><h3 id="方法：-1"><a href="#方法：-1" class="headerlink" title="方法："></a>方法：</h3><h4 id="1-暴力-1"><a href="#1-暴力-1" class="headerlink" title="1.暴力"></a>1.暴力</h4><p>循环遍历，时间复杂度为O(n)，代码太简单就省略了也不建议用这种方法</p>
+<h4 id="2-二分算法-重点-时间复杂度O-logn-1"><a href="#2-二分算法-重点-时间复杂度O-logn-1" class="headerlink" title="2.二分算法(重点)时间复杂度O(logn)"></a>2.二分算法(<strong>重点</strong>)时间复杂度<strong>O(logn)</strong></h4><h5 id="解法思路：-以下只显示左右都闭区间的写法"><a href="#解法思路：-以下只显示左右都闭区间的写法" class="headerlink" title="解法思路：(以下只显示左右都闭区间的写法)"></a>解法思路：(以下只显示<strong>左右都闭区间</strong>的写法)</h5><p>根据mid的值可以将数组划分为两部分，即<strong>二段性</strong></p>
+<p>例如：<strong>输入：</strong>[1,2,3,3,3,4]，target &#x3D; 3</p>
+<p>​			<strong>输出</strong>：[2,4]</p>
+<p>首先定义左右指针：<strong>l &#x3D; 0,r &#x3D; nums.size()-1;</strong></p>
+<ol>
+<li><p><strong>寻找左边界时候</strong>：输入：[$\underline{\text{1,2}}$，  $\underline{\text{3,3,3,4}}$]，根据下划线，将区间分为两部分，左边小于target，右边大于等于tagret.如果mid在左半区间,就得移动左指针,一定是<strong>l &#x3D; mid + 1</strong>,因为左端点只在右半区间出现,如果mid在右半区间则移动右指针,是<strong>r &#x3D; mid</strong></p>
+<p><em>详细叙述</em>: 用 resLeft 表示左边界；</p>
+<p>我们注意到以左边界划分的两个区间的特点：</p>
+<ul>
+<li>左边区间 [l, resLeft - 1] 都是小于 x 的；</li>
+<li>右边区间（包括左边界） [resLeft, r] 都是大于等于 x 的；</li>
+<li>因此，关于 mid 的落点，我们可以分为下面两种情况：</li>
+<li>当我们的 mid 落在 [l, resLeft - 1] 区间的时候，也就是 arr[mid] &lt;target 。说明 [l, mid] 都是可以舍去的，此时更新 l 到 mid + 1 的位置，继续在 [mid + 1, r] 上寻找左边界；</li>
+<li>当 mid 落在 [resLeft， r] 的区间的时候，也就是 arr[mid] &gt;&#x3D; target 。说明 [mid + 1, r] （因为 mid 可能是最终结果，不能舍去）是可以舍去的，此时更新 r 到 mid 的位置，继续在 [l, mid] 上寻找左边界.</li>
+</ul>
+</li>
+<li><p><strong>寻找右边界时候</strong>:输入：[$\underline{\text{1,2,3,3,3}}$，  $\underline{\text{4}}$],根据下划线,将区间分为两部分,左边小于等于target,右边大于target,如果mid在左半区间就得移动左指针,<strong>l &#x3D; mid</strong>,因为左区间包含右端点,如果mid在右半区间则移动右指针,为<strong>r &#x3D; mid  - 1</strong>,因为右半区间没有右端点,(根据闭区间原则)</p>
+<p><em>详细叙述:</em> 用 resRight 表示右边界；</p>
+<p>我们注意到以左边界划分的两个区间的特点:</p>
+<ul>
+<li><p>我们注意到右边界的特点：</p>
+</li>
+<li><p>左边区间（包括右边界） [l, resRight] 都是小于等于 x 的；</p>
+</li>
+<li><p>右边区间 [resRight+ 1, r] 都是大于 x 的；</p>
+</li>
+<li><p>因此，关于 mid 的落点，我们可以分为下面两种情况：</p>
+</li>
+<li><p>当我们的 mid 落在 [l, resRight] 区间的时候，说明 [l, mid - 1]（ mid 不可以舍去，因为有可能是最终结果）都是可以舍去的，此时更新 l 到 mid 的位置；</p>
+</li>
+<li><p>当 mid 落在 [resRight+ 1, r] 的区间的时候，说明 [mid, r] 内的元素是可以舍去的，此时更新 r 到 mid - 1 的位置.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="细节-重点-均为闭区间的写法细节-："><a href="#细节-重点-均为闭区间的写法细节-：" class="headerlink" title="细节(重点)(均为闭区间的写法细节)："></a>细节(<strong>重点</strong>)(均为闭区间的写法细节)：</h5><ol>
+<li>while循环控制条件:无论寻找左侧边界还是右侧边界,都只能是<strong>while(l &lt; r)</strong>,因为l &#x3D; r的时候就是最终结果无需判断,而且一旦相等就会死循环.</li>
+<li>求中点的方式: 寻找<strong>左边界</strong>时候的求中点方式为 <strong>mid &#x3D; l + (r - l ) &#x2F; 2</strong> ,寻找<strong>右边界</strong>的时候求中点方式为 <strong>mid &#x3D; l + (r - l + 1) &#x2F; 2</strong> ,否则就会死循环.</li>
+</ol>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">searchRange</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 处理nums为空的情况</span></span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="comment">// 查找区间左端点</span></span><br><span class="line">        <span class="type">int</span> begin = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target)</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (nums[l] != target)</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            begin = l;</span><br><span class="line">        <span class="comment">// 查找区间右端点</span></span><br><span class="line">        l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> mid = l + (r - l + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt;= target)</span><br><span class="line">                l = mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;begin, r&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="模板"><a href="#模板" class="headerlink" title="模板:"></a>模板:</h5><ol>
+<li>寻找左边界:</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(l &lt; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(...) l = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> r = mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>寻找右边界</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(l &lt; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> mid = l + (r - l + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(...) l = mid;</span><br><span class="line">    <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="记忆方法"><a href="#记忆方法" class="headerlink" title="记忆方法:"></a>记忆方法:</h5><ol>
+<li>while循环要牢记</li>
+<li>求中点mid时候,下面 <strong>- 1</strong>,则上面 <strong>+ 1</strong>，即只有 right - 1 的情况下，才会向上取整（也就是 +1 取中间数）</li>
+<li>分类讨论if那块时候看二段性如何划分的</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">luluniu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/post/841c5930.html">http://example.com/post/841c5930.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">luluniu的妙妙屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/image/touxiangfort.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/touxiangfort.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">luluniu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/luluniu6"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">二分算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AC%AC%E4%B8%80%E7%A7%8D%E4%BA%8C%E5%88%86-easy"><span class="toc-number">1.1.</span> <span class="toc-text">一、第一种二分(easy)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%B8%80%EF%BC%9A%E5%8A%9B%E6%89%A3704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-%E5%8A%9B%E6%89%A3%EF%BC%88LeetCode%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">例题一：力扣704. 二分查找 - 力扣（LeetCode）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.暴力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95-%E9%87%8D%E7%82%B9-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6O-logn"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.二分算法(重点)时间复杂度O(logn)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.2.2.1.</span> <span class="toc-text">解法思路:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%86%E8%8A%82-%E9%87%8D%E9%9A%BE%E7%82%B9"><span class="toc-number">1.1.2.2.2.</span> <span class="toc-text">细节:(重难点)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%89%88%E6%9C%AC%E4%B8%80-%E5%B7%A6%E9%97%AD%E5%8F%B3%E9%97%AD"><span class="toc-number">1.1.2.2.3.</span> <span class="toc-text">代码版本一(左闭右闭)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%89%88%E6%9C%AC%E4%BA%8C-%E5%B7%A6%E9%97%AD%E5%8F%B3%E5%BC%80"><span class="toc-number">1.1.2.2.4.</span> <span class="toc-text">代码版本二(左闭右开)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-number">1.1.2.2.5.</span> <span class="toc-text">补充：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AF%BB%E6%89%BE%E5%B7%A6%E4%BE%A7%E8%BE%B9%E7%95%8C%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E5%92%8C%E5%AF%BB%E6%89%BE%E5%8F%B3%E4%BE%A7%E8%BE%B9%E7%95%8C%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">1.2.</span> <span class="toc-text">二、寻找左侧边界的二分查找和寻找右侧边界的二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%BA%8C%E5%8A%9B%E6%89%A334-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">例题二力扣34. 在排序数组中查找元素的第一个和最后一个位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%9A-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1.暴力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95-%E9%87%8D%E7%82%B9-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6O-logn-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.二分算法(重点)时间复杂度O(logn)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E6%80%9D%E8%B7%AF%EF%BC%9A-%E4%BB%A5%E4%B8%8B%E5%8F%AA%E6%98%BE%E7%A4%BA%E5%B7%A6%E5%8F%B3%E9%83%BD%E9%97%AD%E5%8C%BA%E9%97%B4%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">1.2.2.2.1.</span> <span class="toc-text">解法思路：(以下只显示左右都闭区间的写法)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%86%E8%8A%82-%E9%87%8D%E7%82%B9-%E5%9D%87%E4%B8%BA%E9%97%AD%E5%8C%BA%E9%97%B4%E7%9A%84%E5%86%99%E6%B3%95%E7%BB%86%E8%8A%82-%EF%BC%9A"><span class="toc-number">1.2.2.2.2.</span> <span class="toc-text">细节(重点)(均为闭区间的写法细节)：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.2.2.3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.2.2.2.4.</span> <span class="toc-text">模板:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.2.5.</span> <span class="toc-text">记忆方法:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/841c5930.html" title="二分算法思路">二分算法思路</a><time datetime="2024-07-21T17:45:39.000Z" title="发表于 2024-07-22 01:45:39">2024-07-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By luluniu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
